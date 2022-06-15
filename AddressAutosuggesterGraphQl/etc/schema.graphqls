@@ -1,0 +1,20 @@
+type Query {
+    city_suggester(input: CitiesInput): CitiesOutput @resolver(class: "WindAndeddu\\AddressAutosuggesterGraphQl\\Model\\Resolver\\City") @cache(cacheIdentity: "WindAndeddu\\AddressAutosuggesterGraphQl\\Model\\Resolver\\Elasticsearch\\CityIdentity")
+    district_suggester(input: DistrictsInput): DistrictsOutput @resolver(class: "WindAndeddu\\AddressAutosuggesterGraphQl\\Model\\Resolver\\District") @cache(cacheIdentity: "WindAndeddu\\AddressAutosuggesterGraphQl\\Model\\Resolver\\Elasticsearch\\DistrictIdentity")
+}
+input CitiesInput {
+    city_phrase: String!
+}
+
+input DistrictsInput {
+    city_phrase: String!
+    district_phrase: String!
+}
+
+type CitiesOutput {
+    cities: [String]
+}
+
+type DistrictsOutput {
+    districts: [String]
+}

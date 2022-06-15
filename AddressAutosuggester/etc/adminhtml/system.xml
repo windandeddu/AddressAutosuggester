@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="elasticsearch_autosuggestion" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>City/District Autosuggestion</label>
+            <tab>service</tab>
+            <resource>WindAndeddu_AddressAutosuggester::autosuggestion_config</resource>
+            <group id="elasticsearch" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Elasticsearch Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="server_hostname" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Server Hostname</label>
+                </field>
+                <field id="server_port" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Server Port</label>
+                </field>
+                <field id="elasticsearch_enable_auth" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Elasticsearch HTTP Auth</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="engine">elasticsearch_autosuggestion</field>
+                    </depends>
+                </field>
+                <field id="elasticsearch_username" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch HTTP Username</label>
+                    <depends>
+                        <field id="engine">elasticsearch_autosuggestion</field>
+                        <field id="elasticsearch_enable_auth">1</field>
+                    </depends>
+                </field>
+                <field id="elasticsearch_password" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch HTTP Password</label>
+                    <depends>
+                        <field id="engine">elasticsearch_autosuggestion</field>
+                        <field id="elasticsearch_enable_auth">1</field>
+                    </depends>
+                </field>
+                <field id="address_autosuggester_connect_wizard" translate="button_label" sortOrder="95" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label/>
+                    <button_label>Test Connection</button_label>
+                    <frontend_model>WindAndeddu\AddressAutosuggester\Block\Adminhtml\System\Config\Elasticsearch\TestConnection</frontend_model>
+                </field>
+            </group>
+            <group id="address_suggester" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Suggester Configuration</label>
+                <field id="city_suggestion_index" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>City Suggestion Index Name</label>
+                </field>
+                <field id="district_suggestion_index" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>District Suggestion Index Name</label>
+                </field>
+                <field id="country" translate="label" type="multiselect" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Country To Show Suggestions</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
